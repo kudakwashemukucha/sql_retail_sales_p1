@@ -66,44 +66,63 @@ The following SQL queries were developed to answer specific business questions:
 
 --Qn 1 - Retrieve all sales made on 2022-11-05
 
+  ```sql
  SELECT * FROM retail_sales
  WHERE sale_date = '2022-11-05' AND category = 'Clothing'
+```
+
 
  --Qn 2 - retrieve all transactions where category is Clothing and quantity sold is more than 10 in Nov 2022
+
+  ```sql
  SELECT *,
  quantity as quantity_sold
  FROM retail_sales
  WHERE category = 'Clothing' AND FORMAT(sale_date,'yyyy-MM') ='2022-11'
+```
+
 
  -- Qn 3 - write a query to calculate the total_sales for each category
+
+  ```sql
  SELECT category, SUM(total_sale) as total_sales, COUNT(*) orders
  FROM retail_sales 
  GROUP BY
  category
- 
+ ```
 
  -- Qn 4 write a query to find the average age of customers who purchased items from 'Beauty' category
+
+  ```sql
  SELECT category, AVG(age) as average_age
  FROM retail_sales
  GROUP BY 
  category
  HAVING
  category = 'Beauty'
+```
 
  -- Qn 5 write a query to find all transactions where the total_sale is greater than 1000
+
+  ```sql
  SELECT * FROM retail_sales
  WHERE total_sale > 1000
-
+```
 
  --Qn 6 write a query to find the total number of transactions made by each gender
+
+  ```sql
 	SELECT category,gender, COUNT(transaction_id) as total_transactions 
 	FROM retail_sales
 	GROUP BY 
 	category,gender
 	ORDER BY
 	category
+```
 
 -- Qn 7 write a query to calculate the avg sale for each month and find out the best selling month in each year
+
+  ```sql
 SELECT YEAR(sale_date) as sale_year,
        MONTH(sale_date) as sale_month,
 	   ROUND(AVG(total_sale),2) as avg_total_sales
@@ -113,23 +132,29 @@ GROUP BY YEAR(sale_date),
 ORDER BY 
      YEAR(sale_date),
 	 avg_total_sales DESC
-
+```
 
  -- Qn 8 write a query to find the top 5 customers based on highest total sales
+
+  ```sql
  SELECT TOP 5 customer_id,SUM(total_sale) as total_sales FROM retail_sales
  GROUP BY
  customer_id
  ORDER BY
  total_sales DESC
-
+```
  -- Qn 9 write a query to find the number of unique customers who purchased items from each category
+
+  ```sql
  SELECT category,COUNT(DISTINCT customer_id) as unique_customers
  FROM retail_sales
  GROUP BY category
  ORDER BY category ASC
-
+```
 
 --Qn 10 write a sql query to create each shift and number of orders (example morning <= 12,)
+
+  ```sql
 SELECT *,
 	CASE 
 	   WHEN DATEPART(HOUR,sale_time) < 12 THEN 'Morning'
@@ -157,3 +182,4 @@ CASE
 
 
 	--end of project
+```
