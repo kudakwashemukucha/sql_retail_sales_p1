@@ -46,7 +46,8 @@ CREATE TABLE retail_sales
 SELECT COUNT(*) FROM retail_sales;
 SELECT COUNT(DISTINCT customer_id) FROM retail_sales;
 SELECT DISTINCT category FROM retail_sales;
-
+```
+ ```sql
 SELECT * FROM retail_sales
 WHERE 
     sale_date IS NULL OR sale_time IS NULL OR customer_id IS NULL OR 
